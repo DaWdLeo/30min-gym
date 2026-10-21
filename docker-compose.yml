@@ -1,0 +1,8 @@
+services:
+  30min-gym:
+    build: .
+    image: 30min-gym:latest
+    container_name: 30min-gym
+    ports:
+      - "8080:80"
+    restart: unless-stopped

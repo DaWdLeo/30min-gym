@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1f2226">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="30MIN GYM – persönlicher 30-Minuten-Trainingsassistent. Offline, ohne Konto, ohne Tracking.">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="30MIN GYM">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <title>30MIN GYM</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <link rel="stylesheet" href="./css/app.css">
+</head>
+<body>
+  <div class="brand"><span class="logo">30<b>MIN</b></span><span class="brand-gym">GYM</span></div>
+  <main id="view" class="view" aria-live="polite"><noscript>Bitte JavaScript aktivieren.</noscript></main>
+
+  <div id="restbar" class="restbar" hidden>
+    <div class="rb-fill"><i id="restFill"></i></div>
+    <div class="rb-row">
+      <span class="rb-label">Pause <b id="restTime">0:00</b></span>
+      <span class="rb-btns">
+        <button class="btn sm ghost" data-rest="-15">−15</button>
+        <button class="btn sm ghost" data-rest="15">+15</button>
+        <button class="btn sm primary" data-rest="skip">Weiter</button>
+      </span>
+    </div>
+  </div>
+
+  <nav class="nav" aria-label="Hauptnavigation">
+    <button data-tab="heute"><svg viewBox="0 0 24 24"><path d="M6.5 6.5v11M17.5 6.5v11M3 9.5v5M21 9.5v5M6.5 12h11"/></svg><span>Heute</span></button>
+    <button data-tab="uebungen"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.2"/><path d="M12 7.5v6l-3.5 6M12 13.5l3.5 6M7 10.5h10"/></svg><span>Übungen</span></button>
+    <button data-tab="fortschritt"><svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h16M7 15l4-4 3 3 5-6"/></svg><span>Fortschritt</span></button>
+    <button data-tab="protokolle"><svg viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7zM14 3v4h4M10 12h5M10 16h5"/></svg><span>Protokolle</span></button>
+  </nav>
+
+  <input type="file" id="fileImport" accept=".json,application/json" hidden>
+  <div id="toast" class="toast" role="status"></div>
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>
