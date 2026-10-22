@@ -28,15 +28,24 @@ export function openSheet(o) {
   </div>`;
   document.body.appendChild(wrap);
   document.body.classList.add('no-scroll');
-  requestAnimationFrame(() => wrap.classList.add('open'));
+
   let closed = false;
   const close = () => {
     if (closed) return; closed = true;
     wrap.classList.remove('open');
     document.body.classList.remove('no-scroll');
+    const wantsHistoryBack = history.state && history.state.sheetOpen;
+    if (wantsHistoryBack) history.back();
     setTimeout(() => wrap.remove(), 200);
     o.onClose && o.onClose();
   };
+
+  history.pushState({ sheetOpen: true }, '', location.href);
+  const onPopState = () => { if (!closed) close(); };
+  window.addEventListener('popstate', onPopState, { once: true });
+
+  requestAnimationFrame(() => wrap.classList.add('open'));
+
   wrap.addEventListener('click', (e) => {
     if (e.target === wrap || e.target.closest('.close')) close();
     const b = e.target.closest('.sheet-actions .btn');
